@@ -24,12 +24,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rdobrynin/configguard.git"
+    "url": "https://github.com/rdobrynin/safecfg.git"
   },
   "bugs": {
-    "url": "https://github.com/rdobrynin/configguard/issues"
+    "url": "https://github.com/rdobrynin/safecfg/issues"
   },
-  "homepage": "https://github.com/rdobrynin/configguard#readme",
+  "homepage": "https://github.com/rdobrynin/safecfg#readme",
   "devDependencies": {
     "@types/node": "^20.x",
     "typescript": "^5.x"

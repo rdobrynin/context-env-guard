@@ -1,17 +1,17 @@
-# ConfigGuard 🛡️
+# Safecfg 🛡️
 
 A declarative, type-safe configuration validator with contextual validation and auto-generated documentation for Node.js.
 
 ## Installation
 
 ```bash
-npm install configguard
+npm install safecfg
 ```
 
 ## Quick start
 
 ```
-import { ConfigGuard } from 'configguard';
+import { SafeCfg } from 'safeCfg';
 
 const schema = {
   database: {
@@ -20,7 +20,7 @@ const schema = {
   }
 };
 
-const guard = new ConfigGuard(schema, {
+const safeCfg = new SafeCfg(schema, {
   environment: process.env.NODE_ENV
 });
 
@@ -31,7 +31,7 @@ const config = {
   }
 };
 
-const result = await guard.load(config);
+const result = await safeCfg.load(config);
 
 if (result.valid) {
   console.log('Configuration is valid!');

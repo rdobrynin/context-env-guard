@@ -1,9 +1,8 @@
 /**
- * ConfigGuard - TypeScript типы
- * Основные интерфейсы и типы для библиотеки валидации конфигураций
+ * SafeCfg - TypeScript types
  */
 
-// ==================== ОСНОВНЫЕ ТИПЫ СХЕМЫ ====================
+// ==================== COMMON TYPES OF SCHEMA ====================
 
 /**
  * Базовый тип для узла схемы
@@ -16,7 +15,6 @@ export interface SchemaNode {
     env?: string;
     secret?: boolean;
 
-    // Валидация
     validate?: (value: any, context?: ValidationContext) => boolean | Promise<boolean>;
     pattern?: RegExp;
     enum?: any[];
@@ -25,16 +23,13 @@ export interface SchemaNode {
     minLength?: number;
     maxLength?: number;
 
-    // Условные правила
     requiredWhen?: (values: Record<string, any>) => boolean;
     dependsOn?: string[];
     conflictsWith?: string[];
 
-    // Трансформации
     transform?: (value: any) => any;
     coerce?: boolean;
 
-    // Метаданные
     examples?: any[];
     deprecated?: boolean | string;
 }
@@ -162,9 +157,9 @@ export type MergeStrategy =
 // ==================== ОПЦИИ И КОНТЕКСТ ====================
 
 /**
- * Основные опции ConfigGuard
+ * Основные опции SafeCfg
  */
-export interface ConfigGuardOptions {
+export interface SafeCfgOptions {
     // Общие настройки
     environment?: string;
     region?: string;
@@ -289,7 +284,7 @@ export interface TransformContext {
 /**
  * Базовый класс ошибок ConfigGuard
  */
-export class ConfigGuardError extends Error {
+export class SafeCfgError extends Error {
     code: string;
     details?: Record<string, any>;
 
@@ -299,7 +294,7 @@ export class ConfigGuardError extends Error {
         details?: Record<string, any>
     ) {
         super(message);
-        this.name = 'ConfigGuardError';
+        this.name = 'SafeCfgError';
         this.code = code;
         this.details = details;
     }
@@ -308,7 +303,7 @@ export class ConfigGuardError extends Error {
 /**
  * Ошибка валидации
  */
-export class ConfigValidationError extends ConfigGuardError {
+export class SafeCfgValidationError extends SafeCfgError {
     errors: ValidationError[];
 
     constructor(errors: ValidationError[], message?: string) {
@@ -317,7 +312,7 @@ export class ConfigValidationError extends ConfigGuardError {
             'VALIDATION_FAILED',
             { errors }
         );
-        this.name = 'ConfigValidationError';
+        this.name = 'SafeCfgValidationError';
         this.errors = errors;
     }
 
@@ -344,7 +339,7 @@ export class ConfigValidationError extends ConfigGuardError {
 /**
  * Ошибка загрузки источника
  */
-export class SourceLoadError extends ConfigGuardError {
+export class SourceLoadError extends SafeCfgError {
     source: string;
 
     constructor(source: string, originalError: Error) {

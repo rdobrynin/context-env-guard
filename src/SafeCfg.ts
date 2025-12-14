@@ -10,16 +10,16 @@ export interface ValidationResult {
     warnings: string[];
 }
 
-export interface ConfigGuardOptions {
+export interface SafeCfgOptions {
     environment?: string;
     strict?: boolean;
 }
 
-export class ConfigGuard {
+export class SafeCfg {
     private schema: SchemaDefinition;
-    private options: ConfigGuardOptions;
+    private options: SafeCfgOptions;
 
-    constructor(schema: SchemaDefinition, options: ConfigGuardOptions = {}) {
+    constructor(schema: SchemaDefinition, options: SafeCfgOptions = {}) {
         this.schema = schema;
         this.options = {
             environment: process.env.NODE_ENV || 'development',
@@ -63,7 +63,7 @@ export class ConfigGuard {
      * Генерирует TypeScript типы из схемы
      */
     generateTypes(): string {
-        return `// Auto-generated types for ConfigGuard
+        return `// Auto-generated types for SafeCfg
 export interface Config {
   // Add your configuration types here
   [key: string]: any;

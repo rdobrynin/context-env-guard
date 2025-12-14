@@ -1,13 +1,13 @@
 // Реэкспорт основного класса
-export { ConfigGuard } from './ConfigGuard';
+export { SafeCfg } from './SafeCfg';
 
 // Реэкспорт всех типов
 export * from './types';
 
 // Реэкспорт ошибок
 export {
-    ConfigGuardError,
-    ConfigValidationError,
+    SafeCfgError,
+    SafeCfgValidationError,
     SourceLoadError
 } from './types';
 
@@ -21,5 +21,5 @@ export {
 } from './SchemaBuilder';
 
 // Экспорт по умолчанию
-import { ConfigGuard } from './ConfigGuard';
-export default ConfigGuard;
+import { SafeCfg } from './SafeCfg';
+export default SafeCfg;
